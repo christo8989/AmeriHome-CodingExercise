@@ -49,7 +49,7 @@ namespace AmeriHome.Logic.Models
 			{
 				if (this.wellnessDiscount == default(double))
 				{
-					this.wellnessDiscount = this.CalculateSalesTax();
+					this.wellnessDiscount = this.CalculateWellnessDiscount();
 				}
 				return this.wellnessDiscount;
 			}
@@ -84,7 +84,7 @@ namespace AmeriHome.Logic.Models
 			{
 				if (!ingredient.Item.IsProduce)
 				{
-					result += ingredient.Item.Price * SALES_TAX;
+					result += ingredient.Amount * ingredient.Item.Price * SALES_TAX;
 				}
 			}
 			result = CentsToCeiling(result, SALES_TAX_INTERVAL);
@@ -98,7 +98,7 @@ namespace AmeriHome.Logic.Models
 			{
 				if (ingredient.Item.IsOrganic)
 				{
-					result += ingredient.Item.Price * WELLNESS_DISCOUNT;
+					result += ingredient.Amount * ingredient.Item.Price * WELLNESS_DISCOUNT;
 				}
 			}
 			result = CentsToCeiling(result, WELLNESS_DISCOUNT_INTERVAL);
@@ -110,7 +110,7 @@ namespace AmeriHome.Logic.Models
 			var result = 0.0;
 			foreach (var ingredient in this.Ingredients)
 			{
-				result += ingredient.Item.Price;
+				result += ingredient.Amount * ingredient.Item.Price;
 			}
 
 			result += this.SalesTax;

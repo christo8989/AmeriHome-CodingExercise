@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 0,
+    "Name": "Organic Garlic",
+    "Price": 0.67,
+    "IsProduce": true,
+    "IsOrganic": true
+  },
+  {
+    "Id": 1,
+    "Name": "Lemon",
+    "Price": 2.03,
+    "IsProduce": true,
+    "IsOrganic": false
+  },
+  {
+    "Id": 2,
+    "Name": "Corn",
+    "Price": 0.87,
+    "IsProduce": true,
+    "IsOrganic": false
+  },
+  {
+    "Id": 3,
+    "Name": "Chicken Breast",
+    "Price": 2.19,
+    "IsProduce": false,
+    "IsOrganic": false
+  },
+  {
+    "Id": 4,
+    "Name": "Bacon",
+    "Price": 0.24,
+    "IsProduce": false,
+    "IsOrganic": false
+  },
+  {
+    "Id": 5,
+    "Name": "Pasta",
+    "Price": 0.31,
+    "IsProduce": false,
+    "IsOrganic": false
+  },
+  {
+    "Id": 6,
+    "Name": "Organic Olive Oil",
+    "Price": 1.92,
+    "IsProduce": false,
+    "IsOrganic": true
+  },
+  {
+    "Id": 7,
+    "Name": "Vinegar",
+    "Price": 1.26,
+    "IsProduce": false,
+    "IsOrganic": false
+  },
+  {
+    "Id": 8,
+    "Name": "Salt",
+    "Price": 0.16,
+    "IsProduce": false,
+    "IsOrganic": false
+  },
+  {
+    "Id": 9,
+    "Name": "Pepper",
+    "Price": 0.17,
+    "IsProduce": false,
+    "IsOrganic": false
+  }
+]

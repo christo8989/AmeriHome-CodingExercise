@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behavior\Clients\IFileClient.cs" />
     <Compile Include="Behavior\Manager\IRecipeManager.cs" />
     <Compile Include="Behavior\Repositories\IIngredientRepository.cs" />
     <Compile Include="Behavior\Repositories\IRecipeIngredientRepository.cs" />
     <Compile Include="Behavior\Repositories\IRecipeRepository.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Utilities\MathExtension.cs" />
     <Compile Include="Data\Domain\IFoodItem.cs" />
     <Compile Include="Data\Domain\IIngredient.cs" />

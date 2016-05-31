@@ -6,6 +6,7 @@ namespace AmeriHome.Root.Behavior.Repositories
 	public interface IRecipeRepository
 	{
 		IDataRecipe Get(int id);
+		List<IDataRecipe> GetAll();
 		List<int> GetAllIds();
 	}
 }

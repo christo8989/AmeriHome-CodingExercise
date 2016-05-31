@@ -1,12 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using AmeriHome.DataAccess.Clients;
 using AmeriHome.DataAccess.Models;
+using AmeriHome.Root.Common;
 using Newtonsoft.Json;
 
 namespace AmeriHome.Data
 {
+	//Not using Composition Root on this file because it takes the place of the database.
 	public class MakeJsonFiles
-	{																		   
-		public string JsonIngredients()
+	{		 
+		private readonly FileClient client;
+
+
+		public MakeJsonFiles(FileClient client)
+		{
+			this.client = client;
+		}
+
+
+		public void CreateAllTables()
+		{
+			JsonIngredients();
+			JsonRecipes();
+			JsonRecipeIngredients();
+		}
+
+		public void JsonIngredients()
 		{
 			var ingredients = new List<DataIngredient>();
 			ingredients.Add(new DataIngredient {
@@ -80,31 +100,32 @@ namespace AmeriHome.Data
 				IsOrganic = false,
 			});
 
-			var result = JsonConvert.SerializeObject(ingredients);
-			return result;
+
+			var json = JsonConvert.SerializeObject(ingredients, Formatting.Indented);
+			this.client.WriteToFile(Constants.TABLE_INGREDIENT, json);
 		}
 
-		public string JsonRecipes()
-    {
-        var recipes = new List<DataRecipe>();
-        recipes.Add(new DataRecipe {
-            Id = 0,
-            Name = "Recipe 1",
-        });
-        recipes.Add(new DataRecipe {
-            Id = 1,
-            Name = "Recipe 2",
-        });
-        recipes.Add(new DataRecipe {
-            Id = 2,
-            Name = "Recipe 3",
-        });
+		public void JsonRecipes()
+		{
+			var recipes = new List<DataRecipe>();
+			recipes.Add(new DataRecipe {
+				Id = 0,
+				Name = "Recipe 1",
+			});
+			recipes.Add(new DataRecipe {
+				Id = 1,
+				Name = "Recipe 2",
+			});
+			recipes.Add(new DataRecipe {
+				Id = 2,
+				Name = "Recipe 3",
+			});
 
-        var result = JsonConvert.SerializeObject(recipes);
-        return result;
-    }
+			var json = JsonConvert.SerializeObject(recipes, Formatting.Indented);
+			this.client.WriteToFile(Constants.TABLE_RECIPE, json);
+		}
 
-		public string JsonRecipeIngredients()
+		public void JsonRecipeIngredients()
 		{
 			var recipeIngredients = new List<DataRecipeIngredient>();
 			recipeIngredients.Add(new DataRecipeIngredient {
@@ -188,8 +209,8 @@ namespace AmeriHome.Data
 				Amount = 0.75,
 			});
 
-			var result = JsonConvert.SerializeObject(recipeIngredients);
-			return result;
+			var json = JsonConvert.SerializeObject(recipeIngredients, Formatting.Indented);
+			this.client.WriteToFile(Constants.TABLE_RECIPE_INGREDIENT, json);
 		}
 	}
 }

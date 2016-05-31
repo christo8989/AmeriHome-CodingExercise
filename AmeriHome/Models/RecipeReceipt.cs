@@ -45,7 +45,18 @@ namespace AmeriHome.Models
 		{
 			//TODO: Can I remove String.Format?
 			var str = new StringBuilder();
-			str.Append(String.Format("{0}\n",this.recipe.Name));
+			str.Append(String.Format("{0}\n\n",this.recipe.Name));
+
+			#if DEBUG
+			str.Append("\t\tDEBUG MODE ONLY\n\n");
+			foreach (var ingredient in this.recipe.Ingredients)
+			{
+				str.Append(String.Format("\t\t{0} - {1}\n", ingredient.Amount, ingredient.Item.Name));
+				str.Append(String.Format("\t\tCost: {0}\n", ingredient.Item.Price));
+				str.Append(String.Format("\t\tTaxed: {0}, Organic: {1}\n\n", !ingredient.Item.IsProduce, ingredient.Item.IsOrganic));
+			}
+			#endif
+			  
 			str.Append(String.Format("\tTax = {0}\n", this.SalesTax));
 			str.Append(String.Format("\tDiscount = ({0})\n", this.WellnessDiscount));
 			str.Append(String.Format("\tTotal = {0}\n", this.TotalCost));

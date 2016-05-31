@@ -54,6 +54,10 @@
       <Project>{b2e42ffb-d12b-40be-aaf8-72bca58c7879}</Project>
       <Name>AmeriHome.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AmeriHome.Data\AmeriHome.Data.csproj">
+      <Project>{44b658df-0672-4d00-b578-509055a934e9}</Project>
+      <Name>AmeriHome.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AmeriHome.Logic\AmeriHome.Logic.csproj">
       <Project>{1133a253-7067-444b-a7b0-d915ac4f6280}</Project>
       <Name>AmeriHome.Logic</Name>

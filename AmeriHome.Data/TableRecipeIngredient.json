@@ -1,0 +1,82 @@
+[
+  {
+    "RecipeId": 0,
+    "IngredientId": 0,
+    "Amount": 1.0
+  },
+  {
+    "RecipeId": 0,
+    "IngredientId": 1,
+    "Amount": 1.0
+  },
+  {
+    "RecipeId": 0,
+    "IngredientId": 6,
+    "Amount": 0.75
+  },
+  {
+    "RecipeId": 0,
+    "IngredientId": 8,
+    "Amount": 0.75
+  },
+  {
+    "RecipeId": 0,
+    "IngredientId": 9,
+    "Amount": 0.5
+  },
+  {
+    "RecipeId": 1,
+    "IngredientId": 0,
+    "Amount": 1.0
+  },
+  {
+    "RecipeId": 1,
+    "IngredientId": 3,
+    "Amount": 4.0
+  },
+  {
+    "RecipeId": 1,
+    "IngredientId": 6,
+    "Amount": 0.5
+  },
+  {
+    "RecipeId": 1,
+    "IngredientId": 7,
+    "Amount": 0.5
+  },
+  {
+    "RecipeId": 2,
+    "IngredientId": 0,
+    "Amount": 1.0
+  },
+  {
+    "RecipeId": 2,
+    "IngredientId": 2,
+    "Amount": 4.0
+  },
+  {
+    "RecipeId": 2,
+    "IngredientId": 4,
+    "Amount": 4.0
+  },
+  {
+    "RecipeId": 2,
+    "IngredientId": 5,
+    "Amount": 8.0
+  },
+  {
+    "RecipeId": 2,
+    "IngredientId": 6,
+    "Amount": 0.33333333333333331
+  },
+  {
+    "RecipeId": 2,
+    "IngredientId": 8,
+    "Amount": 1.25
+  },
+  {
+    "RecipeId": 2,
+    "IngredientId": 9,
+    "Amount": 0.75
+  }
+]
