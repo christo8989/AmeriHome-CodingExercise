@@ -23,7 +23,12 @@ namespace AmeriHome.DataAccess.Repositories
 
 		public List<IDataIngredient> Get(IEnumerable<int> ids)
 		{
-			//if ids is null or empty, throw error.
+			if (ids == null)
+				throw new ArgumentNullException("ids"); //nameof(ids)
+
+			if (!ids.Any())
+				throw new ArgumentException("Empty list of ids", "ids");
+
 			var json = client.ReadFromFile(Constants.TABLE_INGREDIENT);
 			var allIngredients = JsonConvert.DeserializeObject<List<DataIngredient>>(json);
 			var result = allIngredients.Where(m => ids.Contains(m.Id));

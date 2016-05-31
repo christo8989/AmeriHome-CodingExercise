@@ -12,6 +12,7 @@ namespace AmeriHome.Logic.Models
 			get { return this.amount; }
 		}
 		//TODO: Decorator pattern for this one.
+		//http://www.codeproject.com/Articles/479635/UnderstandingplusandplusImplementingplusDecoratorp
 		private readonly IFoodItem item;
 		public IFoodItem Item
 		{
@@ -29,7 +30,7 @@ namespace AmeriHome.Logic.Models
 
 		public override string ToString()
 		{
-			return String.Format("{0} {1}", this.ToFraction(Amount), this.Item.Name);
+			return String.Format("{0} - {1}", this.ToFraction(Amount), this.Item.Name);
 		}
 
 		#region Fraction Helpers

@@ -23,17 +23,26 @@ namespace AmeriHome.DataAccess.Clients
 
 		public string GetLocalPath(string relativePath)
 		{
+			if (relativePath == null)
+				throw new ArgumentNullException("relativePath"); //nameof(relativePath)
+
 			var result = String.Format(@"{0}{1}", this.Root, relativePath);
 			return result;
 		}
 
 		public void WriteToFile(string relativePath, string text)
 		{
+			if (relativePath == null)
+				throw new ArgumentNullException("relativePath"); //nameof(relativePath)
+
 			File.WriteAllText(GetLocalPath(relativePath), text);
 		}
 
 		public string ReadFromFile(string relativePath)
 		{
+			if (relativePath == null)
+				throw new ArgumentNullException("relativePath"); //nameof(relativePath)
+
 			var result = File.ReadAllText(GetLocalPath(relativePath));
 			return result;
 		}

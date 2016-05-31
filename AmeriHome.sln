@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome", ".\AmeriHome\AmeriHome.csproj", "{56984625-D360-44CF-9886-C114DF3DC6DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome", "AmeriHome\AmeriHome.csproj", "{56984625-D360-44CF-9886-C114DF3DC6DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "A - Deployable", "A - Deployable", "{DEA762F8-10D6-4D82-8FCE-4852E6D22E6A}"
 EndProject
@@ -11,13 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "B - Logic", "B - Logic", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C - Data", "C - Data", "{EECCEA58-4C47-4593-9957-21D75CA52D9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.Root", ".\AmeriHome.Root\AmeriHome.Root.csproj", "{B9C58ED7-972C-492A-9043-B0F9F03A16C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.Root", "AmeriHome.Root\AmeriHome.Root.csproj", "{B9C58ED7-972C-492A-9043-B0F9F03A16C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.Logic", ".\AmeriHome.Logic\AmeriHome.Logic.csproj", "{1133A253-7067-444B-A7B0-D915AC4F6280}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.Logic", "AmeriHome.Logic\AmeriHome.Logic.csproj", "{1133A253-7067-444B-A7B0-D915AC4F6280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.Data", ".\AmeriHome.Data\AmeriHome.Data.csproj", "{44B658DF-0672-4D00-B578-509055A934E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.Data", "AmeriHome.Data\AmeriHome.Data.csproj", "{44B658DF-0672-4D00-B578-509055A934E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.DataAccess", ".\AmeriHome.DataAccess\AmeriHome.DataAccess.csproj", "{B2E42FFB-D12B-40BE-AAF8-72BCA58C7879}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmeriHome.DataAccess", "AmeriHome.DataAccess\AmeriHome.DataAccess.csproj", "{B2E42FFB-D12B-40BE-AAF8-72BCA58C7879}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "D - Test", "D - Test", "{E385ABC3-A2B2-484B-A241-79F6604B1AEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{0EA050A5-DF8C-4143-8BD0-9F665C4CBF2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,10 @@ Global
 		{B2E42FFB-D12B-40BE-AAF8-72BCA58C7879}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2E42FFB-D12B-40BE-AAF8-72BCA58C7879}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2E42FFB-D12B-40BE-AAF8-72BCA58C7879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EA050A5-DF8C-4143-8BD0-9F665C4CBF2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EA050A5-DF8C-4143-8BD0-9F665C4CBF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EA050A5-DF8C-4143-8BD0-9F665C4CBF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EA050A5-DF8C-4143-8BD0-9F665C4CBF2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +63,6 @@ Global
 		{1133A253-7067-444B-A7B0-D915AC4F6280} = {50398968-E487-4DD0-B2EA-D3B66A8DFD9D}
 		{44B658DF-0672-4D00-B578-509055A934E9} = {EECCEA58-4C47-4593-9957-21D75CA52D9C}
 		{B2E42FFB-D12B-40BE-AAF8-72BCA58C7879} = {EECCEA58-4C47-4593-9957-21D75CA52D9C}
+		{0EA050A5-DF8C-4143-8BD0-9F665C4CBF2B} = {E385ABC3-A2B2-484B-A241-79F6604B1AEA}
 	EndGlobalSection
 EndGlobal
