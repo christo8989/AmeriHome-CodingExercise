@@ -67,8 +67,8 @@ namespace UnitTests.Models
 			foreach (var ingredient in this.recipe.Ingredients)
 			{
 				str.Append(String.Format("\t\t{0}\n", ingredient.ToString()));
-				str.Append(String.Format("\t\tCost: {0}\n", ingredient.Item.Price));
-				str.Append(String.Format("\t\tTaxed: {0}, Organic: {1}\n\n", !ingredient.Item.IsProduce, ingredient.Item.IsOrganic));
+				str.Append(String.Format("\t\tCost: {0}\n", ingredient.Price));
+				str.Append(String.Format("\t\tTaxed: {0}, Organic: {1}\n\n", !ingredient.IsProduce, ingredient.IsOrganic));
 			}
 			#endif
 

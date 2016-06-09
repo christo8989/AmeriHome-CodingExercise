@@ -10,7 +10,22 @@ namespace UnitTests.Mocks
 			get { throw new NotImplementedException(); }
 		}
 
-		public IFoodItem Item
+		public bool IsOrganic
+		{
+			get { throw new NotImplementedException(); }
+		}
+
+		public bool IsProduce
+		{
+			get { throw new NotImplementedException(); }
+		}
+
+		public string Name
+		{
+			get { throw new NotImplementedException(); }
+		}
+
+		public double Price
 		{
 			get { throw new NotImplementedException(); }
 		}

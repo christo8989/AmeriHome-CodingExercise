@@ -42,7 +42,7 @@ namespace UnitTests.Models
 		{
 			this.amount = 1;
 			this.ingredient = new Ingredient(this.amount, this.foodItem);
-			var expected = String.Format("1 - {0}", this.ingredient.Item.Name);
+			var expected = String.Format("1 - {0}", this.ingredient.Name);
 			var actual = this.ingredient.ToString();
 			Assert.IsTrue(StringAssert.Equals(expected, actual));
 		}
@@ -52,7 +52,7 @@ namespace UnitTests.Models
 		{
 			this.amount = 0.75;
 			this.ingredient = new Ingredient(this.amount, this.foodItem);
-			var expected = String.Format("3/4 - {0}", this.ingredient.Item.Name);
+			var expected = String.Format("3/4 - {0}", this.ingredient.Name);
 			var actual = this.ingredient.ToString();
 			Assert.IsTrue(StringAssert.Equals(expected, actual));
 		}
@@ -62,7 +62,7 @@ namespace UnitTests.Models
 		{
 			this.amount = 0.115;
 			this.ingredient = new Ingredient(this.amount, this.foodItem);
-			var expected = String.Format("23/200 - {0}", this.ingredient.Item.Name);
+			var expected = String.Format("23/200 - {0}", this.ingredient.Name);
 			var actual = this.ingredient.ToString();
 			Assert.IsTrue(StringAssert.Equals(expected, actual));
 		}
@@ -72,7 +72,7 @@ namespace UnitTests.Models
 		{
 			this.amount = 2.115;
 			this.ingredient = new Ingredient(this.amount, this.foodItem);
-			var expected = String.Format("2 23/200 - {0}", this.ingredient.Item.Name);
+			var expected = String.Format("2 23/200 - {0}", this.ingredient.Name);
 			var actual = this.ingredient.ToString();
 			Assert.IsTrue(StringAssert.Equals(expected, actual));
 		}

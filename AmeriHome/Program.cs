@@ -25,16 +25,13 @@ namespace AmeriHome
 				recipeIngredientRespository
 			);
 
-			
+			//Start Program
 			var recipes = recipeManager.GetAll();
 			foreach (var recipe in recipes)
 			{
 				var receipt = new RecipeReceipt(recipe);
 				Console.WriteLine(receipt.ToString());
 			}
-
-			Console.WriteLine("\n\n---------- END ----------");
-			while (true) { }
 		}
 	}
 }

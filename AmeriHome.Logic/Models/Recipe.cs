@@ -124,9 +124,9 @@ namespace AmeriHome.Logic.Models
 			var result = 0.0;
 			foreach (var ingredient in this.Ingredients)
 			{
-				if (!ingredient.Item.IsProduce)
+				if (!ingredient.IsProduce)
 				{
-					result += ingredient.Amount * ingredient.Item.Price * Constants.SALES_TAX;
+					result += ingredient.Amount * ingredient.Price * Constants.SALES_TAX;
 				}
 			}
 			result = CentsToCeiling(result, Constants.SALES_TAX_INTERVAL);
@@ -138,9 +138,9 @@ namespace AmeriHome.Logic.Models
 			var result = 0.0;
 			foreach (var ingredient in this.Ingredients)
 			{
-				if (ingredient.Item.IsOrganic)
+				if (ingredient.IsOrganic)
 				{
-					result += ingredient.Amount * ingredient.Item.Price * Constants.WELLNESS_DISCOUNT;
+					result += ingredient.Amount * ingredient.Price * Constants.WELLNESS_DISCOUNT;
 				}
 			}
 			result = CentsToCeiling(result, Constants.WELLNESS_DISCOUNT_INTERVAL);
@@ -152,7 +152,7 @@ namespace AmeriHome.Logic.Models
 			var result = 0.0;
 			foreach (var ingredient in this.Ingredients)
 			{
-				result += ingredient.Amount * ingredient.Item.Price;
+				result += ingredient.Amount * ingredient.Price;
 			}
 
 			result += this.SalesTax;

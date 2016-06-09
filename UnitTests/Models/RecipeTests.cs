@@ -160,9 +160,9 @@ namespace UnitTests.Models
 			var expected = 0.0;
 			foreach (var ingredient in this.recipe.Ingredients)
 			{
-				if (!ingredient.Item.IsProduce)
+				if (!ingredient.IsProduce)
 				{
-					expected += ingredient.Amount * ingredient.Item.Price * Constants.SALES_TAX;
+					expected += ingredient.Amount * ingredient.Price * Constants.SALES_TAX;
 				}
 			}
 			var dollars = (int) expected;
@@ -180,9 +180,9 @@ namespace UnitTests.Models
 			var expected = 0.0;
 			foreach (var ingredient in this.recipe.Ingredients)
 			{
-				if (ingredient.Item.IsOrganic)
+				if (ingredient.IsOrganic)
 				{
-					expected += ingredient.Amount * ingredient.Item.Price * Constants.WELLNESS_DISCOUNT;
+					expected += ingredient.Amount * ingredient.Price * Constants.WELLNESS_DISCOUNT;
 				}
 			}
 			var dollars = (int) expected;
@@ -200,7 +200,7 @@ namespace UnitTests.Models
 			var expected = 0.0;
 			foreach (var ingredient in this.recipe.Ingredients)
 			{
-				expected += ingredient.Amount * ingredient.Item.Price;
+				expected += ingredient.Amount * ingredient.Price;
 			}
 			expected += this.recipe.SalesTax;
 			expected -= this.recipe.WellnessDiscount;

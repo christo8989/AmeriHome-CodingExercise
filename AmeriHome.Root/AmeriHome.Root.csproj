@@ -47,6 +47,7 @@
     <Compile Include="Behavior\Repositories\IRecipeRepository.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Utilities\MathExtension.cs" />
+    <Compile Include="Data\Domain\Abstract\FoodItemDecorator.cs" />
     <Compile Include="Data\Domain\IFoodItem.cs" />
     <Compile Include="Data\Domain\IIngredient.cs" />
     <Compile Include="Data\Domain\IRecipe.cs" />

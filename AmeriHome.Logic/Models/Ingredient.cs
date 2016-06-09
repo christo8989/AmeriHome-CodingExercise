@@ -1,40 +1,30 @@
 ﻿using System;
 using AmeriHome.Root.Data.Domain;
+using AmeriHome.Root.Data.Domain.Abstract;
 
 namespace AmeriHome.Logic.Models
 {
-	public class Ingredient : IIngredient
+	public class Ingredient : FoodItemDecorator, IIngredient
 	{
 		private readonly double amount;
 		public double Amount
 		{
 			get { return this.amount; }
 		}
-		//TODO: Decorator pattern for this one.
-		//http://www.codeproject.com/Articles/479635/UnderstandingplusandplusImplementingplusDecoratorp
-		private readonly IFoodItem item;
-		public IFoodItem Item
-		{
-			get { return this.item; }
-		}
 
 
-		public Ingredient(double amount, IFoodItem foodItem)
+		public Ingredient(double amount, IFoodItem foodItem) : base(foodItem)
 		{
 			if (amount < 0)
 				throw new ArgumentException("'amount' cannot be a negative number.", "amount"); //nameof(amount)
 
-			if (foodItem == null)
-				throw new ArgumentNullException("foodItem"); //nameof(foodItem)
-
 			this.amount = amount;
-			this.item = foodItem;
 		}
 
 
 		public override string ToString()
 		{
-			return String.Format("{0} - {1}", this.ToFraction(Amount), this.Item.Name);
+			return String.Format("{0} - {1}", this.ToFraction(Amount), this.Name);
 		}
 
 		#region Fraction Helpers

@@ -70,7 +70,6 @@
     <Compile Include="Mocks\FileClientMock.cs" />
     <Compile Include="Repositories\RecipeRepositoryTests.cs" />
     <Compile Include="Repositories\RecipeIngredientRepositoryTests.cs" />
-    <Compile Include="Utilities\MapTests.cs" />
     <Compile Include="Utilities\MathExtensionTests.cs" />
   </ItemGroup>
   <ItemGroup />
