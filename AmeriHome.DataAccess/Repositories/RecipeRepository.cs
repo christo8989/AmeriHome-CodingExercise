@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AmeriHome.DataAccess.Models;
 using AmeriHome.Root.Behavior.Clients;
@@ -16,6 +17,9 @@ namespace AmeriHome.DataAccess.Repositories
 
 		public RecipeRepository(IFileClient client)
 		{
+			if (client == null)
+				throw new ArgumentNullException();
+
 			this.client = client;
 		}
 
@@ -28,8 +32,8 @@ namespace AmeriHome.DataAccess.Repositories
 
 		public List<IDataRecipe> GetAll()
 		{
-			var json = this.client.ReadFromFile(Constants.TABLE_RECIPE);
-			var result = JsonConvert.DeserializeObject<List<DataRecipe>>(json);
+			var json = this.client.ReadFromFile(Constants.TABLE_RECIPE) ?? String.Empty;
+			var result = JsonConvert.DeserializeObject<List<DataRecipe>>(json) ?? new List<DataRecipe>();
 			return result.Cast<IDataRecipe>().ToList();
 		}
 

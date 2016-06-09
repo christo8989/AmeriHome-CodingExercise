@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AmeriHome.Logic</RootNamespace>
     <AssemblyName>AmeriHome.Logic</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,7 +45,6 @@
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Map.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AmeriHome.Root\AmeriHome.Root.csproj">

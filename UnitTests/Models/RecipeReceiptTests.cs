@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using AmeriHome.Logic.Models;
 using AmeriHome.Models;
+using AmeriHome.Root.Common;
+using AmeriHome.Root.Common.Utilities;
 using AmeriHome.Root.Data.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UnitTests.Mocks;
 
 namespace UnitTests.Models
 {
@@ -16,36 +20,66 @@ namespace UnitTests.Models
 		[TestInitialize]
 		public void Initialize()
 		{
-			var ingredients = new List<IIngredient> {
-				new Ingredient(1, new FoodItem(
-					"Test Item 1",
-					1.50,
-					true,
-					true)),	 
-				new Ingredient(0.75, new FoodItem(
-					"Test Item 2",
-					2,
-					false,
-					true)),
-				new Ingredient(4, new FoodItem(
-					"Test Item 3",
-					0.30,
-					true,
-					false)),
-				new Ingredient(1, new FoodItem(
-					"Test Item 4",
-					0.15,
-					false,
-					false)),
-			};
-			this.recipe = new Recipe("Test Recipe", ingredients);
+			this.recipe = new RecipeMock();
 			this.recipeReceipt = new RecipeReceipt(this.recipe);
 		}
 
-		///THESE TESTS ARE IMPORTANT!!!!
-		//TODO: SalesTax_ReturnsCorrectAmount
-		//TODO: WellnessDiscount_ReturnsCorrectAmount
-		//TODO: TotalCost_ReturnsCorrectAmount
-		//TODO: ToString_ReturnsCorrectString
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void Constructor_ThrowsArgumentNullException()
+		{
+			Action action = () => new RecipeReceipt(null);
+			action();
+		}
+
+		[TestMethod]
+		public void SalesTax_ReturnsCurrencyString()
+		{
+			var expected = this.recipe.SalesTax.ToString("C");
+			var actual = this.recipeReceipt.SalesTax;
+			Assert.IsTrue(StringAssert.Equals(expected, actual));
+		}
+
+		[TestMethod]
+		public void WellnessDiscount_ReturnsCurrencyString()
+		{
+			var expected = this.recipe.WellnessDiscount.ToString("C");
+			var actual = this.recipeReceipt.WellnessDiscount;
+			Assert.IsTrue(StringAssert.Equals(expected, actual));
+		}
+
+		[TestMethod]
+		public void TotalCost_ReturnsCurrencyString()
+		{
+			var expected = this.recipe.TotalCost.ToString("C");
+			var actual = this.recipeReceipt.TotalCost;
+			Assert.IsTrue(StringAssert.Equals(expected, actual));
+		}
+
+		[TestMethod]
+		public void ToString_ReturnsOutputString()
+		{
+			var str = new StringBuilder();
+			str.Append(String.Format("{0}\n\n", this.recipe.Name));
+
+			#if DEBUG
+			str.Append("\t\tDEBUG MODE ONLY\n\n");
+			foreach (var ingredient in this.recipe.Ingredients)
+			{
+				str.Append(String.Format("\t\t{0}\n", ingredient.ToString()));
+				str.Append(String.Format("\t\tCost: {0}\n", ingredient.Item.Price));
+				str.Append(String.Format("\t\tTaxed: {0}, Organic: {1}\n\n", !ingredient.Item.IsProduce, ingredient.Item.IsOrganic));
+			}
+			#endif
+
+			str.Append(String.Format("\tTax = {0}\n", this.recipe.SalesTax.ToString("C")));
+			str.Append(String.Format("\tDiscount = ({0})\n", this.recipe.WellnessDiscount.ToString("C")));
+			str.Append(String.Format("\tTotal = {0}\n", this.recipe.TotalCost.ToString("C")));
+			str.Append("\n");
+			var expected = str.ToString();
+
+			var actual = this.recipeReceipt.ToString();
+			Assert.IsTrue(StringAssert.Equals(expected, actual));
+		}
 	}
 }

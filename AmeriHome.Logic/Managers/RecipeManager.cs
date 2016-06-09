@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AmeriHome.Logic.Utilities;
+using AmeriHome.Logic.Models;
 using AmeriHome.Root.Behavior.Manager;
 using AmeriHome.Root.Behavior.Repositories;
 using AmeriHome.Root.Data.Domain;
-using AmeriHome.Root.Data.Dto;
 
 namespace AmeriHome.Logic.Managers
 {
@@ -21,12 +18,20 @@ namespace AmeriHome.Logic.Managers
 		public RecipeManager(
 			IIngredientRepository ingredientRepository,
 			IRecipeRepository recipeRepository,
-			IRecipeIngredientRepository ingredientRecipeRepository)
+			IRecipeIngredientRepository recipeIngredientRepository)
 		{
-			//if any are null, throw an exception.
+			if (ingredientRepository == null)
+				throw new ArgumentNullException("ingredientRepository"); //nameof(ingredientRepository)
+
+			if (recipeRepository == null)
+				throw new ArgumentNullException("recipeRepository"); //nameof(recipeRepository)
+
+			if (recipeIngredientRepository == null)
+				throw new ArgumentNullException("recipeIngredientRepository"); //nameof(recipeIngredientRepository)
+			
 			this.ingredientRepository = ingredientRepository;
 			this.recipeRepository = recipeRepository;
-			this.recipeIngredientRepository = ingredientRecipeRepository;
+			this.recipeIngredientRepository = recipeIngredientRepository;
 		}
 
 
@@ -38,8 +43,7 @@ namespace AmeriHome.Logic.Managers
 			var ingredientIds = dataRecipeIngredients.Select(m => m.IngredientId);
 			var dataIngredients = this.ingredientRepository.Get(ingredientIds);
 
-			// Joins in a stored procedure would be more efficient and easier.
-			var result = Map.ToRecipe(dataRecipe, dataIngredients, dataRecipeIngredients);
+			var result = new Recipe(dataRecipe, dataIngredients, dataRecipeIngredients);
 			return result;
 		}
 

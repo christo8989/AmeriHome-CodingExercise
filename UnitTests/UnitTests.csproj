@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTests</RootNamespace>
     <AssemblyName>UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,10 +54,17 @@
     <Compile Include="Clients\FileClientTests.cs" />
     <Compile Include="Managers\RecipeManagerTests.cs" />
     <Compile Include="MockData.cs" />
+    <Compile Include="Mocks\FileClientMockFails.cs" />
+    <Compile Include="Mocks\FoodItemMock.cs" />
+    <Compile Include="Mocks\IngredientMock.cs" />
     <Compile Include="Mocks\IngredientRepositoryMock.cs" />
     <Compile Include="Mocks\RecipeIngredientRepositoryMock.cs" />
+    <Compile Include="Mocks\RecipeMock.cs" />
     <Compile Include="Mocks\RecipeRepositoryMock.cs" />
     <Compile Include="Models\RecipeReceiptTests.cs" />
+    <Compile Include="Models\RecipeTests.cs" />
+    <Compile Include="Models\IngredientTests.cs" />
+    <Compile Include="Models\FoodItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IngredientRepositoryTests.cs" />
     <Compile Include="Mocks\FileClientMock.cs" />

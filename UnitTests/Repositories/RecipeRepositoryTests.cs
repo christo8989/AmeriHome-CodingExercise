@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using AmeriHome.DataAccess.Models;
 using AmeriHome.DataAccess.Repositories;
 using AmeriHome.Root.Behavior.Clients;
@@ -24,11 +25,19 @@ namespace UnitTests.Repositories
 			this.recipeRepository = new RecipeRepository(this.client);
 		}
 
-		//Do you implement Maybe instead of null?
+
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void Constructor_ThrowsArgumentNullExceptionOnIngredientRepository()
+		{
+			Action action = () => new RecipeRepository(null);
+			action();
+		}
+
 		[TestMethod]
 		public void Get_ReturnsNullIfIdDoesNotExist()
 		{
-			var recipeId = 1000;
+			var recipeId = -1;
 			var actual = this.recipeRepository.Get(recipeId);
 
 			Assert.IsNull(actual);
@@ -49,8 +58,33 @@ namespace UnitTests.Repositories
 			Assert.IsTrue(result);
 		}
 
-		//TODO: GetAll_ReturnsAllValues
-		//TODO: GetAllIds_ReturnsAllIds
-		//TODO: GetAll_ThrowExceptionIfNullIsReturned
+		[TestMethod]
+		public void GetAllIds_ReturnsAllIds()
+		{
+			var expected = new List<int> { 0, 1, 2 };
+			var actual = this.recipeRepository.GetAllIds();
+			Assert.IsNotNull(actual);
+			Assert.IsTrue(actual.Any());
+			expected.ForEach(m => CollectionAssert.Contains(actual, m));
+		}
+
+		[TestMethod]
+		public void GetAll_ReturnsAllRecipes()
+		{
+			var actual = this.recipeRepository.GetAll();
+			Assert.IsNotNull(actual);
+			Assert.IsTrue(actual.Any());
+			CollectionAssert.AllItemsAreNotNull(actual);
+			CollectionAssert.AllItemsAreUnique(actual);
+		}
+
+		[TestMethod]
+		public void GetAll_ReturnsEmptyList()
+		{
+			this.recipeRepository = new RecipeRepository(new FileClientMockFails());
+			var actual = this.recipeRepository.GetAll();
+			Assert.IsNotNull(actual);
+			Assert.IsFalse(actual.Any());
+		}
 	}
 }

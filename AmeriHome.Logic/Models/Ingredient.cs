@@ -3,7 +3,6 @@ using AmeriHome.Root.Data.Domain;
 
 namespace AmeriHome.Logic.Models
 {
-	// Doesn't need to be immutable but why not given the requirements.
 	public class Ingredient : IIngredient
 	{
 		private readonly double amount;
@@ -22,7 +21,12 @@ namespace AmeriHome.Logic.Models
 
 		public Ingredient(double amount, IFoodItem foodItem)
 		{
-			//throw if foodItem is null. throw if amount is negative.
+			if (amount < 0)
+				throw new ArgumentException("'amount' cannot be a negative number.", "amount"); //nameof(amount)
+
+			if (foodItem == null)
+				throw new ArgumentNullException("foodItem"); //nameof(foodItem)
+
 			this.amount = amount;
 			this.item = foodItem;
 		}
@@ -38,9 +42,11 @@ namespace AmeriHome.Logic.Models
 		private string ToFraction(double value)
 		{
 			var result = "";
-			if ((value % 1) == 0)
+			var integer = (int) value;
+			var real = value - integer;
+			if (real == 0)
 			{
-				result = ((int) value).ToString();
+				result = integer.ToString();
 			}
 			else
 			{
@@ -48,14 +54,16 @@ namespace AmeriHome.Logic.Models
 				do
 				{
 					i++;
-					value *= 10;
-				} while ((value % 1) != 0);
+					real *= 10;
+				} while ((real % 1) > 0.0001);
 
 				var multiple = (uint) Math.Pow(10, i);
-				var gcd = GCD(multiple, (uint) value);
-				var numerator = (int)(value / gcd);
+				var gcd = GCD(multiple, (uint) real);
+				var numerator = (int)(real / gcd);
 				var denominator = (int)(multiple / gcd);
-				result = String.Format("{0}/{1}", numerator, denominator);
+				result = integer > 0 
+					? String.Format("{0} {1}/{2}", integer, numerator, denominator)
+					: String.Format("{0}/{1}", numerator, denominator);
 			}
 
 			return result;

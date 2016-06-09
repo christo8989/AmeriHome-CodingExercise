@@ -36,14 +36,15 @@ namespace AmeriHome.Models
 
 		public RecipeReceipt(IRecipe recipe)
 		{
-			// if recipe is null, throw and error
+			if (recipe == null)
+				throw new ArgumentNullException("recipe"); //nameof(recipe)
+
 			this.recipe = recipe;
 		}
 
 
 		public override string ToString()
 		{
-			//TODO: Can I remove String.Format?
 			var str = new StringBuilder();
 			str.Append(String.Format("{0}\n\n",this.recipe.Name));
 

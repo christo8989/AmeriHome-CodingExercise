@@ -1,8 +1,9 @@
-﻿using AmeriHome.Root.Data.Domain;
+﻿using System;
+using AmeriHome.Root.Data.Domain;
+using AmeriHome.Root.Data.Dto;
 
 namespace AmeriHome.Logic.Models
 {
-	// Doesn't need to be immutable but why not given the requirements.
 	public class FoodItem : IFoodItem
 	{
 		private readonly string name;
@@ -32,11 +33,26 @@ namespace AmeriHome.Logic.Models
 
 		public FoodItem(string name, double price, bool isProduce, bool isOrganic)
 		{
-			//throw if name is null or empty, throw if price is negative
+			if (name == null)
+				throw new ArgumentNullException("name"); //nameof(name)
+
+			if (String.IsNullOrWhiteSpace(name))
+				throw new ArgumentException("'name' cannot be empty or whitespace.", "name");
+
+			if (price < 0)
+				throw new ArgumentException("'price' cannot be negative.", "price"); //nameof(price)
+
 			this.name = name;
 			this.price = price;
 			this.isProduce = isProduce;
 			this.isOrganic = isOrganic;
 		}
+
+		public FoodItem(IDataIngredient ingredient)
+			: this(ingredient.Name, ingredient.Price, ingredient.IsProduce, ingredient.IsOrganic) { }
+
+		//Can't find where to upgrade to C# 5... :/
+		//public FoodItem(IDataIngredient ingredient)
+		//  : this(ingredient?.Name, ingredient?.Price, ingredient?.IsProduce, ingredient?.IsOrganic) { }
 	}
 }

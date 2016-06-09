@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AmeriHome.Root.Common;
 using AmeriHome.Root.Common.Utilities;
 using AmeriHome.Root.Data.Domain;
+using AmeriHome.Root.Data.Dto;
 
 namespace AmeriHome.Logic.Models
 {
-	// Doesn't need to be immutable but why not given the requirements.
 	public class Recipe : IRecipe
-	{
-		// Not labeled as Input so I'm storing it here for ease.
-		public const double SALES_TAX = 0.086;
-		public const double SALES_TAX_INTERVAL = 0.07;
-		public const double WELLNESS_DISCOUNT = 0.05;
-		public const double WELLNESS_DISCOUNT_INTERVAL = 0.01;
-
+	{																
 		private readonly string name;
 		public string Name
 		{
@@ -71,10 +64,59 @@ namespace AmeriHome.Logic.Models
 
 		public Recipe(string name, List<IIngredient> ingredients)
 		{
-			//throw if recipe is null or empty.
-			//throw if ingredients are null or empty.
+			if (name == null)
+				throw new ArgumentNullException("name"); //nameof(name)	   
+
+			if (String.IsNullOrWhiteSpace(name))
+				throw new ArgumentException("'name' is empty or whitespace.", "name");
+
+			if (ingredients == null)
+				throw new ArgumentNullException("ingredients"); //nameof(ingredients)
+
+			if (!ingredients.Any())
+				throw new ArgumentException("'ingredients' is empty.", "ingredients");
+
+			if (!(ingredients.Count > 1))
+				throw new ArgumentException("A recipe must contain more than 1 ingredient.", "ingredients");
+
 			this.name = name;
 			this.ingredients = ingredients;
+		}
+
+		public Recipe(
+			IDataRecipe recipe,
+			List<IDataIngredient> ingredients,
+			List<IDataRecipeIngredient> recipeIngredients)
+		{
+			if (recipe == null)
+				throw new ArgumentNullException("recipe"); //nameof(recipe)
+
+			if (ingredients == null)
+				throw new ArgumentNullException("ingredients"); //nameof(ingredients)
+
+			if (!ingredients.Any())
+				throw new ArgumentException("'ingredients' is empty.", "ingredients");
+
+			if (recipeIngredients == null)
+				throw new ArgumentNullException("recipeIngredients"); //nameof(recipeIngredients) 
+
+			if (!recipeIngredients.Any())
+				throw new ArgumentException("'recipeIngredients' is empty.", "recipeIngredients");
+
+			// Build recipe list.
+			var recipeItems = new List<IIngredient>();
+			foreach (var recipeIngredient in recipeIngredients)
+			{
+				var dataIngredient = ingredients.Single(m => m.Id == recipeIngredient.IngredientId); //I'm being lazy...
+				var recipeItem = new Ingredient(
+					amount: recipeIngredient.Amount,
+					foodItem: new FoodItem(dataIngredient)
+				);
+				recipeItems.Add(recipeItem);
+			}
+
+			this.name = recipe.Name;
+			this.ingredients = recipeItems;
 		}
 
 		private double CalculateSalesTax()
@@ -84,10 +126,10 @@ namespace AmeriHome.Logic.Models
 			{
 				if (!ingredient.Item.IsProduce)
 				{
-					result += ingredient.Amount * ingredient.Item.Price * SALES_TAX;
+					result += ingredient.Amount * ingredient.Item.Price * Constants.SALES_TAX;
 				}
 			}
-			result = CentsToCeiling(result, SALES_TAX_INTERVAL);
+			result = CentsToCeiling(result, Constants.SALES_TAX_INTERVAL);
 			return result;
 		}
 
@@ -98,10 +140,10 @@ namespace AmeriHome.Logic.Models
 			{
 				if (ingredient.Item.IsOrganic)
 				{
-					result += ingredient.Amount * ingredient.Item.Price * WELLNESS_DISCOUNT;
+					result += ingredient.Amount * ingredient.Item.Price * Constants.WELLNESS_DISCOUNT;
 				}
 			}
-			result = CentsToCeiling(result, WELLNESS_DISCOUNT_INTERVAL);
+			result = CentsToCeiling(result, Constants.WELLNESS_DISCOUNT_INTERVAL);
 			return result;
 		}
 
@@ -128,6 +170,5 @@ namespace AmeriHome.Logic.Models
 			var result = dollars + cents;
 			return result;
 		}
-
 	}
 }
